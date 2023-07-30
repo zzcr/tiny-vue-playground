@@ -3,7 +3,6 @@ import { Repl, type SFCOptions } from '@vue/repl'
 import Monaco from '@vue/repl/monaco-editor'
 import { ref, watchEffect } from 'vue'
 import { useDark } from '@vueuse/core'
-import { Loading } from '@opentiny/vue'
 import LocalStorageService from './utils/localStorage'
 import { useStore } from './composables/store'
 import { type UserOptions } from '@/composables/store'
@@ -39,17 +38,6 @@ const dark = useDark()
 
 // persist state
 watchEffect(() => history.replaceState({}, '', `#${store.serialize()}`))
-
-let loadingInstance
-// eslint-disable-next-line prefer-const
-loadingInstance = Loading.service({
-  text: '加载中...',
-  target: document.getElementById('loading'),
-})
-
-window.addEventListener('load', () => {
-  loadingInstance.close()
-})
 </script>
 
 <template>
